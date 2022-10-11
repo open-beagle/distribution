@@ -36,3 +36,7 @@ bin/*
 *.sublime-project
 *.sublime-workspace
 .idea/*
+
+dist/
+.vscode/
+__debug_bin

@@ -1,0 +1,24 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Launch Go",
+      "type": "go",
+      "request": "launch",
+      "mode": "debug",
+      "program": "${workspaceRoot}/cmd/registry/main.go",
+      "args": [
+        "serve",
+        "${workspaceRoot}/.vscode/config.yml"
+      ],
+      "env": {
+        // "HTTP_PROXY": "http://192.168.1.11:8888",
+        "REGISTRY_STORAGE_FILESYSTEM_ROOTDIRECTORY": "${workspaceRoot}/.vscode/registry",
+        "REGISTRY_HTTP_SECRET": "r9w3BqGVAfVt",
+        "REGISTRY_HTTP_TLS_CERTIFICATE": "${workspaceRoot}/.vscode/registry.beagle.default.crt",
+        "REGISTRY_HTTP_TLS_KEY": "${workspaceRoot}/.vscode/registry.beagle.default.key"
+      },
+      "showLog": true
+    }
+  ]
+}
