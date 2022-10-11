@@ -43,4 +43,13 @@ docker tag arm64v8/registry:2.8.1 registry.cn-qingdao.aliyuncs.com/wod/registry:
 docker push registry.cn-qingdao.aliyuncs.com/wod/registry:2.8.1-arm64
 ```
 
-与 DockerHub 不同，本项目编译的是基于 debian 运行的 glibc 的 registry 二进制文件。
+## debug
+
+```bash
+# /etc/hosts 
+# registry.beagle.default，解析为172.29.7.216时，docker默认使用https协议
+# registry.beagle.default，解析为127.0.0.1时，docker默认使用http协议
+docker pull alpine:3 && \
+docker tag alpine:3 registry.beagle.default:6444/wod/alpine:3 && \
+docker push registry.beagle.default:6444/wod/alpine:3
+```
