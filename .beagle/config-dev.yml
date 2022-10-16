@@ -8,9 +8,6 @@ log:
     service: registry
     environment: development
 
-storage:
-  filesystem: {}
-
 http:
   addr: :6444
   headers:
