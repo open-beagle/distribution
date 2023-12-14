@@ -23,10 +23,8 @@ docker run \
 --rm \
 -v $PWD/:/go/src/github.com/docker/distribution \
 -w /go/src/github.com/docker/distribution \
--e PLUGIN_BINARY=registry \
--e PLUGIN_MAIN=cmd/registry \
--e CI_WORKSPACE=/go/src/github.com/docker/distribution \
-registry.cn-qingdao.aliyuncs.com/wod/devops-go-arch:1.20-alpine
+registry.cn-qingdao.aliyuncs.com/wod/golang:1.20-alpine \
+sh .beagle/build.sh
 ```
 
 ## hub.docker.com
