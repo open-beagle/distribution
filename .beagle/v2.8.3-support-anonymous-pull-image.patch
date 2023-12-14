@@ -1,27 +1,27 @@
-From 249d712be55225b4b36374a367404d53ce2c61a1 Mon Sep 17 00:00:00 2001
+From 107b83786f751901f212f9c17082758025a3b3df Mon Sep 17 00:00:00 2001
 From: shucheng <shucheng@bd-apaas.com>
-Date: Thu, 14 Dec 2023 16:39:02 +0800
-Subject: [PATCH] support anonymous pull image
+Date: Thu, 14 Dec 2023 17:08:43 +0800
+Subject: [PATCH] v2.8.3-support-anonymous-pull-image
 
 ---
  registry/auth/htpasswd/access.go | 4 ++++
  1 file changed, 4 insertions(+)
 
 diff --git a/registry/auth/htpasswd/access.go b/registry/auth/htpasswd/access.go
-index 2611a23b..f3aba417 100644
+index 2611a23b..9d73eef1 100644
 --- a/registry/auth/htpasswd/access.go
 +++ b/registry/auth/htpasswd/access.go
-@@ -55,6 +55,10 @@ func (ac *accessController) Authorized(ctx context.Context, accessRecords ...aut
- 		return nil, err
- 	}
+@@ -57,6 +57,10 @@ func (ac *accessController) Authorized(ctx context.Context, accessRecords ...aut
  
-+	if req.Method != "POST" && os.Getenv("BEAGLE_AUTH_ANONYMOUS") == "PUBLIC" {
-+		return auth.WithUser(ctx, auth.UserInfo{Name: "anonymous"}), nil
-+	}
-+
  	username, password, ok := req.BasicAuth()
  	if !ok {
++		if req.Method != "POST" && os.Getenv("BEAGLE_AUTH_ANONYMOUS") == "PUBLIC" {
++			return auth.WithUser(ctx, auth.UserInfo{Name: "anonymous"}), nil
++		}
++
  		return nil, &challenge{
+ 			realm: ac.realm,
+ 			err:   auth.ErrInvalidCredential,
 -- 
 2.39.2
 
