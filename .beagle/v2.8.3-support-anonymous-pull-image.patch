@@ -15,7 +15,7 @@ index 2611a23b..f3aba417 100644
  		return nil, err
  	}
  
-+	if req.Method == "GET" && os.Getenv("BEAGLE_AUTH_ANONYMOUS") == "PUBLIC" {
++	if req.Method != "POST" && os.Getenv("BEAGLE_AUTH_ANONYMOUS") == "PUBLIC" {
 +		return auth.WithUser(ctx, auth.UserInfo{Name: "anonymous"}), nil
 +	}
 +
