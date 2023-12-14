@@ -307,10 +307,10 @@ func writeTempRootCerts(rootKeys []libtrust.PrivateKey) (filename string, err er
 // TestAccessController tests complete integration of the token auth package.
 // It starts by mocking the options for a token auth accessController which
 // it creates. It then tries a few mock requests:
-// 		- don't supply a token; should error with challenge
-//		- supply an invalid token; should error with challenge
-// 		- supply a token with insufficient access; should error with challenge
-//		- supply a valid token; should not error
+//   - don't supply a token; should error with challenge
+//   - supply an invalid token; should error with challenge
+//   - supply a token with insufficient access; should error with challenge
+//   - supply a valid token; should not error
 func TestAccessController(t *testing.T) {
 	// Make 2 keys; only the first is to be a trusted root key.
 	rootKeys, err := makeRootKeys(2)
@@ -527,7 +527,7 @@ func TestNewAccessControllerPemBlock(t *testing.T) {
 		t.Fatal(err)
 	}
 
-	if len(ac.(*accessController).rootCerts.Subjects()) != 2 {
+	if len(ac.(*accessController).rootCerts.Subjects()) != 2 { //nolint:staticcheck // FIXME(thaJeztah): ignore SA1019: ac.(*accessController).rootCerts.Subjects has been deprecated since Go 1.18: if s was returned by SystemCertPool, Subjects will not include the system roots. (staticcheck)
 		t.Fatal("accessController has the wrong number of certificates")
 	}
 }

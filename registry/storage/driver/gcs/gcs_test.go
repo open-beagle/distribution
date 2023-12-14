@@ -1,3 +1,4 @@
+//go:build include_gcs
 // +build include_gcs
 
 package gcs
@@ -58,7 +59,7 @@ func init() {
 			panic(fmt.Sprintf("Error reading JWT config : %s", err))
 		}
 		email = jwtConfig.Email
-		privateKey = []byte(jwtConfig.PrivateKey)
+		privateKey = jwtConfig.PrivateKey
 		if len(privateKey) == 0 {
 			panic("Error reading JWT config : missing private_key property")
 		}
@@ -259,6 +260,9 @@ func TestEmptyRootList(t *testing.T) {
 		}
 	}()
 	keys, err := emptyRootDriver.List(ctx, "/")
+	if err != nil {
+		t.Fatalf("unexpected error listing empty root content: %v", err)
+	}
 	for _, path := range keys {
 		if !storagedriver.PathRegexp.MatchString(path) {
 			t.Fatalf("unexpected string in path: %q != %q", path, storagedriver.PathRegexp)
@@ -266,6 +270,9 @@ func TestEmptyRootList(t *testing.T) {
 	}
 
 	keys, err = slashRootDriver.List(ctx, "/")
+	if err != nil {
+		t.Fatalf("unexpected error listing slash root content: %v", err)
+	}
 	for _, path := range keys {
 		if !storagedriver.PathRegexp.MatchString(path) {
 			t.Fatalf("unexpected string in path: %q != %q", path, storagedriver.PathRegexp)
