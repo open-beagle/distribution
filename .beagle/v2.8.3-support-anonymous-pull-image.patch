@@ -16,7 +16,7 @@ index 2611a23b..f3aba417 100644
  	}
  
 +	if req.Method == "GET" && os.Getenv("REGISTRY_AUTH_ANONYMOUS") == "PUBLIC" {
-+		return auth.WithUser(ctx, auth.UserInfo{Name: "root"}), nil
++		return auth.WithUser(ctx, auth.UserInfo{Name: "anonymous"}), nil
 +	}
 +
  	username, password, ok := req.BasicAuth()
