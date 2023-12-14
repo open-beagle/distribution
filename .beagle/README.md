@@ -5,7 +5,7 @@
 ```bash
 git remote add upstream git@github.com:docker/distribution.git
 git fetch upstream
-git merge v2.8.1
+git merge v2.8.3
 ```
 
 ## build
@@ -26,21 +26,21 @@ docker run \
 -e PLUGIN_BINARY=registry \
 -e PLUGIN_MAIN=cmd/registry \
 -e CI_WORKSPACE=/go/src/github.com/docker/distribution \
-registry.cn-qingdao.aliyuncs.com/wod/devops-go-arch:1.19-alpine
+registry.cn-qingdao.aliyuncs.com/wod/devops-go-arch:1.20-alpine
 ```
 
 ## hub.docker.com
 
 ```bash
 # x86_64
-docker pull registry:2.8.1 && \
-docker tag registry:2.8.1 registry.cn-qingdao.aliyuncs.com/wod/registry:2.8.1 && \
-docker push registry.cn-qingdao.aliyuncs.com/wod/registry:2.8.1
+docker pull registry:2.8.3 && \
+docker tag registry:2.8.3 registry.cn-qingdao.aliyuncs.com/wod/registry:2.8.3 && \
+docker push registry.cn-qingdao.aliyuncs.com/wod/registry:2.8.3
 
 # arm64
-docker pull arm64v8/registry:2.8.1 && \
-docker tag arm64v8/registry:2.8.1 registry.cn-qingdao.aliyuncs.com/wod/registry:2.8.1-arm64 && \
-docker push registry.cn-qingdao.aliyuncs.com/wod/registry:2.8.1-arm64
+docker pull arm64v8/registry:2.8.3 && \
+docker tag arm64v8/registry:2.8.3 registry.cn-qingdao.aliyuncs.com/wod/registry:2.8.3-arm64 && \
+docker push registry.cn-qingdao.aliyuncs.com/wod/registry:2.8.3-arm64
 ```
 
 ## debug
