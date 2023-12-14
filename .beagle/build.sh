@@ -14,6 +14,8 @@ PKG="github.com/docker/distribution"
 LDFLAGS="-s -w"
 BUILDTAGS="include_oss,include_gcs"
 
+git apply .beagle/v2.8.3-support-anonymous-pull-image.patch
+
 export GOARCH=amd64
 
 go build -tags "${BUILDTAGS}" \
